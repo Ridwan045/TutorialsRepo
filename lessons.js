@@ -1,4 +1,4 @@
-let car = {
+/*let car = {
     name: 'Bugati',
     model: 'Convertible',
     color: 'yellow',
@@ -22,12 +22,12 @@ let car = {
     } 
   };
   
-  console.log(car.fresh());
+  console.log(car.fresh());*/
   
   function Dog(name, age) {
     this.name = name;
     this.age = age;
-    this.big = true;
+    this.big = false;
     this.strongDog = function() {
       if(this.big) {
         return 'WOOF WOOF'
@@ -36,8 +36,33 @@ let car = {
       };
     };
   };
-  Dog.prototype.numEyes = 2;
+
+  /*Dog.prototype.eat = function() {
+    console.log('Num num num');
+  };*/
+  Dog.prototype = {      //This is how you use prototype to create an object
+    constructor: Dog,
+    numEyes: 2,           //insted of Dog.prototype.numEyes
+    eat: function() {
+        console.log('Num num num');
+    },
+    drink: function() {
+        return 'gulp gulp';
+    }
+  };
   
   let myDog = new Dog('alfread', 20);
   myDog instanceof Dog;
-  console.log(myDog.numEyes);
+
+  let ownProps = [];
+  let prototypeProps = [];
+  for (let property in myDog) {
+    if(myDog.hasOwnProperty(property)) {
+        ownProps.push(property);
+    } else {
+        prototypeProps.push(property);
+    };
+  };
+  console.log(ownProps);
+  console.log(prototypeProps)
+  console.log(myDog.eat());
