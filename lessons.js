@@ -53,6 +53,7 @@
   
   let myDog = new Dog('alfread', 20);
   myDog instanceof Dog;
+  console.log(Dog.prototype.isPrototypeOf(myDog));
 
   let ownProps = [];
   let prototypeProps = [];
