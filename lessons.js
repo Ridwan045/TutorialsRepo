@@ -37,23 +37,47 @@
     };
   };
 
+  function Cat(name) {             // cat constructor
+    this.name = name;
+  };
+
+Cat.prototype = {
+  constructor: Cat,
+}
   /*Dog.prototype.eat = function() {
     console.log('Num num num');
   };*/
   Dog.prototype = {      //This is how you use prototype to create an object
     constructor: Dog,
     numEyes: 2,           //insted of Dog.prototype.numEyes
-    eat: function() {
-        console.log('Num num num');
-    },
-    drink: function() {
-        return 'gulp gulp';
-    }
   };
-  
+
+  function Animal() {};
+
+  Animal.prototype = {
+    constructor: Animal,
+    eat: function() {
+      console.log('Num num num');
+  },
+  drink: function() {
+      return 'gulp gulp';
+    
+  }
+}
+
+//let myDog = Object.create(Animal.prototype);
+Dog.prototype = Object.create(Animal.prototype);
+Cat.prototype = Object.create(Animal.prototype);
   let myDog = new Dog('alfread', 20);
+
+  let myCat = new Cat('kitty');
+
+  console.log(myDog.drink())
+  console.log(myCat.eat())
   myDog instanceof Dog;
+  console.log(typeof Dog.prototype);
   console.log(Dog.prototype.isPrototypeOf(myDog));
+  Object.prototype.isPrototypeOf(Dog.prototype);         // the object is a supertype to dog.prototype and mydog
 
   let ownProps = [];
   let prototypeProps = [];
@@ -66,4 +90,4 @@
   };
   console.log(ownProps);
   console.log(prototypeProps)
-  console.log(myDog.eat());
+  
