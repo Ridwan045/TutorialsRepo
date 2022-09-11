@@ -67,13 +67,26 @@ Cat.prototype = {
 
 //let myDog = Object.create(Animal.prototype);
 Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;     //set the dog constructor to receive the dog constructor insted of animal
+Dog.prototype.bark = function() {       //You can add additional method
+  console.log('Woof Woof');
+}
 Cat.prototype = Object.create(Animal.prototype);
+Cat.prototype.constructor = Cat;
+Cat.prototype.drink = function() {
+  return 'Sip Sip Sip';
+};
+
+
+
   let myDog = new Dog('alfread', 20);
 
   let myCat = new Cat('kitty');
 
+
+  console.log(myDog.bark())
   console.log(myDog.drink())
-  console.log(myCat.eat())
+  console.log(myCat.drink())
   myDog instanceof Dog;
   console.log(typeof Dog.prototype);
   console.log(Dog.prototype.isPrototypeOf(myDog));
